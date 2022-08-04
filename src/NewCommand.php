@@ -52,13 +52,12 @@ class NewCommand extends Command
             ? (bool) $input->getOption('themed')
             : (new SymfonyStyle($input, $output))->confirm('Would you like to use a custom theme with Filament?', false);
 
-
-        $output->write(PHP_EOL.'  <fg=red> _                               _
-  | |                             | |
-  | |     __ _ _ __ __ ___   _____| |
-  | |    / _` | \'__/ _` \ \ / / _ \ |
-  | |___| (_| | | | (_| |\ V /  __/ |
-  |______\__,_|_|  \__,_| \_/ \___|_|</>'.PHP_EOL.PHP_EOL);
+        $output->write(PHP_EOL.'  <fg=yellow>   ______  __                           __
+    / ____(_) /___   ___ __   ___  ____  / /_
+   / /_  /\/ / __ `/ __ `__ \/ _ \/ __ \/ __/
+  / __/ /\/ / /_/ / / / / / /  __/ / / / /_
+ /_/   /\/_/\__,_/_/ /_/ /_/\___/_/ /_/\__/
+        </>'.PHP_EOL);
 
         sleep(1);
 
