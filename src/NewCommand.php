@@ -144,6 +144,7 @@ class NewCommand extends Command
             $output->writeln('  1. cd ' . $name);
             $output->writeln('  2. npm install');
             $output->writeln('  3. npm run build');
+            $output->writeln('  4. php artisan make:filament-user');
         }
 
         return $process->getExitCode();
