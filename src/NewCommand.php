@@ -33,7 +33,8 @@ class NewCommand extends Command
             ->addOption('dark', null, InputOption::VALUE_NONE, 'Default Filament to be dark mode enabled')
             ->addOption('themed', null, InputOption::VALUE_NONE, 'Install custom theme scaffolding')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Forces install even if the directory already exists')
-            ->addOption('breezy', null, InputOption::VALUE_NONE, 'Installs Filament Breezy Plugin');
+            ->addOption('breezy', null, InputOption::VALUE_NONE, 'Installs Filament Breezy Plugin')
+            ->addOption('shield', null, InputOption::VALUE_NONE, 'Installs Filament Shield Plugin');
     }
 
     /**
@@ -56,6 +57,10 @@ class NewCommand extends Command
         $installBreezyPlugin = $input->getOption('breezy') === true
             ? (bool) $input->getOption('breezy')
             : (new SymfonyStyle($input, $output))->confirm('Would you like to install the Filament Breezy Plugin for Authentication?', false);
+
+        $installShieldPlugin = $input->getOption('shield') === true
+            ? (bool) $input->getOption('shield')
+            : (new SymfonyStyle($input, $output))->confirm('Would you like to install the Filament Shield Plugin for Authorization?', false);
 
         $output->write(PHP_EOL.'  <fg=yellow>   ______  __                           __
     / ____(_) /___   ___ __   ___  ____  / /_
@@ -131,6 +136,10 @@ class NewCommand extends Command
 
             if ($installBreezyPlugin) {
                 $this->installBreezyPlugin($directory, $input, $output);
+            }
+
+            if ($installShieldPlugin) {
+                $this->installShieldPlugin($directory, $input, $output);
             }
 
             /**
@@ -279,7 +288,37 @@ class NewCommand extends Command
             );
 
             $output->writeln('  <bg=blue;fg=white> INFO </> Filament Breezy installed.'.PHP_EOL);
-            }
+        }
+
+        $this->commitChanges('Install Filament Breezy', $directory, $input, $output);
+    }
+
+    /**
+     * Install Filament Shield plugin into the application.
+     *
+     * @param  string  $directory
+     * @param  \Symfony\Component\Console\Input\InputInterface  $input
+     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @return void
+     */
+    protected function installShieldPlugin(string $directory, InputInterface $input, OutputInterface $output)
+    {
+        chdir($directory);
+
+        $commands = array_filter([
+            $this->findComposer().' require jeffgreco13/filament-breezy',
+            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-breezy-config',
+        ]);
+
+        if ($this->runCommands($commands, $input, $output)->isSuccessful()) {
+            $this->replaceInFile(
+                "\Filament\Http\Livewire\Auth\Login::class",
+                "\JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Login::class",
+                $directory.'/config/filament.php'
+            );
+
+            $output->writeln('  <bg=blue;fg=white> INFO </> Filament Breezy installed.'.PHP_EOL);
+        }
 
         $this->commitChanges('Install Filament Breezy', $directory, $input, $output);
     }
