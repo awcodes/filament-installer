@@ -9,7 +9,7 @@ composer global require awcodes/filament-installer
 Now you can run the `new` command to quickly set up a new Filament Project.
 
 ```bash
-filament new {.|name of directory} {--dark}
+filament new `directory name`
 ```
 
 ## License
