@@ -3,14 +3,16 @@
 namespace Filament\Installer\Console;
 
 use RuntimeException;
+use function Termwind\{render};
+use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
-use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Process\Process;
 
 class NewCommand extends Command
 {
@@ -34,7 +36,8 @@ class NewCommand extends Command
             ->addOption('themed', null, InputOption::VALUE_NONE, 'Install custom theme scaffolding')
             ->addOption('force', 'f', InputOption::VALUE_NONE, 'Forces install even if the directory already exists')
             ->addOption('breezy', null, InputOption::VALUE_NONE, 'Installs Filament Breezy Plugin')
-            ->addOption('shield', null, InputOption::VALUE_NONE, 'Installs Filament Shield Plugin');
+            ->addOption('shield', null, InputOption::VALUE_NONE, 'Installs Filament Shield Plugin')
+            ->addOption('sentry', null, InputOption::VALUE_NONE, 'Installs Filament Sentry Plugin (combines Breezy, Shield and User management');
     }
 
     /**
@@ -46,21 +49,7 @@ class NewCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $installDarkMode = $input->getOption('dark') === true
-            ? (bool) $input->getOption('dark')
-            : (new SymfonyStyle($input, $output))->confirm('Would you like to use dark mode with Filament?', false);
-
-        $installCustomTheme = $input->getOption('themed') === true
-            ? (bool) $input->getOption('themed')
-            : (new SymfonyStyle($input, $output))->confirm('Would you like to use a custom theme with Filament?', false);
-
-        $installBreezyPlugin = $input->getOption('breezy') === true
-            ? (bool) $input->getOption('breezy')
-            : (new SymfonyStyle($input, $output))->confirm('Would you like to install the Filament Breezy Plugin for Authentication?', false);
-
-        $installShieldPlugin = $input->getOption('shield') === true
-            ? (bool) $input->getOption('shield')
-            : (new SymfonyStyle($input, $output))->confirm('Would you like to install the Filament Shield Plugin for Authorization?', false);
+        $io = new SymfonyStyle($input, $output);
 
         $output->write(PHP_EOL.'  <fg=yellow>   ______  __                           __
     / ____(_) /___   ___ __   ___  ____  / /_
@@ -68,6 +57,26 @@ class NewCommand extends Command
   / __/ /\/ / /_/ / / / / / /  __/ / / / /_
  /_/   /\/_/\__,_/_/ /_/ /_/\___/_/ /_/\__/
         </>'.PHP_EOL);
+
+        $installDarkMode = $input->getOption('dark') === true
+            ? (bool) $input->getOption('dark')
+            : $io->confirm('Would you like to use dark mode with Filament?', false);
+
+        $installCustomTheme = $input->getOption('themed') === true
+            ? (bool) $input->getOption('themed')
+            : $io->confirm('Would you like to use a custom theme with Filament?', false);
+
+        $installBreezyPlugin = $input->getOption('breezy') === true
+            ? (bool) $input->getOption('breezy')
+            : (!($input->getOption('sentry') === true) ? $io->confirm('Would you like to install the Filament Breezy Plugin for Authentication?', false) : false);
+
+        $installShieldPlugin = $input->getOption('shield') === true
+            ? (bool) $input->getOption('shield')
+            : (!($input->getOption('sentry') === true) ? $io->confirm('Would you like to install the Filament Shield Plugin for Authorization?', false) : false);
+
+        $installSentryPlugin = $input->getOption('sentry') === true
+            ? (bool) $input->getOption('sentry')
+            : (!($installBreezyPlugin || $installShieldPlugin) ? $io->confirm('Would you like to install the Filament Sentry Plugin for Authentication, Authorization and User Management?', false) : false);
 
         sleep(1);
 
@@ -88,7 +97,7 @@ class NewCommand extends Command
         $composer = $this->findComposer();
 
         $commands = [
-            $composer." create-project laravel/laravel \"$directory\" $version --remove-vcs --prefer-dist",
+            $composer." create-project laravel/laravel \"$directory\" $version --remove-vcs --prefer-dist --quiet",
         ];
 
         if ($directory != '.' && $input->getOption('force')) {
@@ -103,7 +112,10 @@ class NewCommand extends Command
             $commands[] = "chmod 755 \"$directory/artisan\"";
         }
 
+        render('<div class="text-green-500">Installing Laravel...</div>');
+
         if (($process = $this->runCommands($commands, $input, $output))->isSuccessful()) {
+
             if ($name !== '.') {
                 $this->replaceInFile(
                     'APP_URL=http://localhost',
@@ -124,22 +136,33 @@ class NewCommand extends Command
                 );
             }
 
+            render('<div class="text-green-500">Installing Filament...</div>');
+
             $this->installFilament($directory, $input, $output);
 
             if ($installDarkMode) {
+                render('<div class="text-green-500">Setting up Dark Mode...</div>');
                 $this->installDarkMode($directory, $input, $output);
             }
 
             if ($installCustomTheme) {
+                render('<div class="text-green-500">Setting up Custom Theme...</div>');
                 $this->installCustomTheme($directory, $input, $output);
             }
 
-            if ($installBreezyPlugin) {
-                $this->installBreezyPlugin($directory, $input, $output);
-            }
+            if ($installSentryPlugin) {
+                render('<div class="text-green-500">Installing Filament Sentry...</div>');
+                $this->installSentryPlugin($directory, $input, $output);
+            } else {
+                if ($installBreezyPlugin) {
+                    render('<div class="text-green-500">Installing Filament Breezy...</div>');
+                    $this->installBreezyPlugin($directory, $input, $output);
+                }
 
-            if ($installShieldPlugin) {
-                $this->installShieldPlugin($directory, $input, $output);
+                if ($installShieldPlugin) {
+                    render('<div class="text-green-500">Installing Filament Shield...</div>');
+                    $this->installShieldPlugin($directory, $input, $output);
+                }
             }
 
             /**
@@ -154,14 +177,28 @@ class NewCommand extends Command
                 $output->writeln('');
             }
 
-            $output->writeln('  <bg=blue;fg=white> INFO </> Application ready! <options=bold>Build something amazing.</>'.PHP_EOL);
+            render('<div class="bg-green-300 px-1 mt-1 font-bold text-green-900">New Filament project installed!</div>');
 
-            $output->writeln('  <bg=green;fg=white> NEXT STEPS </>'.PHP_EOL);
+            render('<div class="mt-1 text-green-500">Next Steps</div>');
 
-            $output->writeln('  1. cd ' . $name);
-            $output->writeln('  2. npm install');
-            $output->writeln('  3. npm run build');
-            $output->writeln('  4. php artisan make:filament-user');
+            if ($installShieldPlugin || $installSentryPlugin) {
+                render(<<<HTML
+                    <ol class="pl-2">
+                        <li>cd {$name}</li>
+                        <li>php artisan shield:install</li>
+                        <li>Login at <a href="http://{$name}.test/admin/login">http://{$name}.test/admin/login</a></li>
+                    </ol>
+                HTML);
+            } else {
+                render(<<<HTML
+                    <ol class="pl-2">
+                        <li>cd {$name}</li>
+                        <li>php artisan migrate</li>
+                        <li>php artisan make:filament-user</li>
+                        <li>Login at <a href="http://{$name}.test/admin/login">http://{$name}.test/admin/login</a></li>
+                    </ol>
+                HTML);
+            }
         }
 
         return $process->getExitCode();
@@ -180,9 +217,9 @@ class NewCommand extends Command
         chdir($directory);
 
         $commands = array_filter([
-            $this->findComposer().' require filament/filament',
-            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-config',
-            PHP_BINARY.' artisan storage:link',
+            $this->findComposer().' require filament/filament --quiet',
+            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-config --quiet',
+            PHP_BINARY.' artisan storage:link --quiet',
         ]);
 
         if ($this->runCommands($commands, $input, $output)->isSuccessful()) {
@@ -212,8 +249,6 @@ class NewCommand extends Command
             $directory.'/config/filament.php'
         );
 
-        $output->writeln('  <bg=blue;fg=white> INFO </> Dark Mode activated.'.PHP_EOL);
-
         $this->commitChanges('Activate Dark Mode in Filament', $directory, $input, $output);
     }
 
@@ -235,7 +270,7 @@ class NewCommand extends Command
         chdir($directory);
 
         $commands = array_filter([
-            "npm install --save-dev --silent autoprefixer @tailwindcss/forms @tailwindcss/typography tippy.js",
+            "npm install --save-dev &>/dev/null autoprefixer @tailwindcss/forms @tailwindcss/typography tippy.js",
         ]);
 
         if (PHP_OS_FAMILY == 'Windows') {
@@ -244,23 +279,27 @@ class NewCommand extends Command
             array_push($commands, "rm package-lock.json");
         }
 
-        $this->replaceInFile(
-            "input: ['resources/css/app.css', 'resources/js/app.js'],",
-            "input: ['resources/css/app.css', 'resources/css/filament.css', 'resources/js/app.js'],",
-            $directory.'/vite.config.js'
-        );
-
-        $this->replaceInFile(
-            "App\Providers\RouteServiceProvider::class,",
-            "App\Providers\RouteServiceProvider::class,\n\t\tApp\Providers\FilamentServiceProvider::class,",
-            $directory.'/config/app.php'
-        );
-
         if ($this->runCommands($commands, $input, $output)->isSuccessful()) {
-            $output->writeln('  <bg=blue;fg=white> INFO </> Custom Theme scaffold installed.'.PHP_EOL);
-        }
 
-        $this->commitChanges('Custom Theme scaffold installed.', $directory, $input, $output);
+            $this->replaceInFile(
+                "input: ['resources/css/app.css', 'resources/js/app.js'],",
+                "input: ['resources/css/app.css', 'resources/css/filament.css', 'resources/js/app.js'],",
+                $directory.'/vite.config.js'
+            );
+
+            $this->replaceInFile(
+                "App\Providers\RouteServiceProvider::class,",
+                "App\Providers\RouteServiceProvider::class,\n\t\tApp\Providers\FilamentServiceProvider::class,",
+                $directory.'/config/app.php'
+            );
+
+            $this->runCommands([
+                "npm install &>/dev/null",
+                "npm run build &>/dev/null",
+            ], $input, $output);
+
+            $this->commitChanges('Custom Theme scaffolding installed.', $directory, $input, $output);
+        }
     }
 
     /**
@@ -276,8 +315,8 @@ class NewCommand extends Command
         chdir($directory);
 
         $commands = array_filter([
-            $this->findComposer().' require jeffgreco13/filament-breezy',
-            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-breezy-config',
+            $this->findComposer().' require jeffgreco13/filament-breezy --quiet',
+            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-breezy-config --quiet',
         ]);
 
         if ($this->runCommands($commands, $input, $output)->isSuccessful()) {
@@ -286,8 +325,6 @@ class NewCommand extends Command
                 "\JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Login::class",
                 $directory.'/config/filament.php'
             );
-
-            $output->writeln('  <bg=blue;fg=white> INFO </> Filament Breezy installed.'.PHP_EOL);
         }
 
         $this->commitChanges('Install Filament Breezy', $directory, $input, $output);
@@ -306,21 +343,60 @@ class NewCommand extends Command
         chdir($directory);
 
         $commands = array_filter([
-            $this->findComposer().' require jeffgreco13/filament-breezy',
-            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-breezy-config',
+            $this->findComposer().' require bezhansalleh/filament-shield --quiet',
+            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-shield-config --quiet',
         ]);
 
         if ($this->runCommands($commands, $input, $output)->isSuccessful()) {
             $this->replaceInFile(
-                "\Filament\Http\Livewire\Auth\Login::class",
-                "\JeffGreco13\FilamentBreezy\Http\Livewire\Auth\Login::class",
-                $directory.'/config/filament.php'
+                "use Laravel\Sanctum\HasApiTokens;",
+                "use Laravel\Sanctum\HasApiTokens;\nuse BezhanSalleh\FilamentShield\Traits\HasFilamentShield;",
+                $directory.'/app/Models/User.php'
             );
 
-            $output->writeln('  <bg=blue;fg=white> INFO </> Filament Breezy installed.'.PHP_EOL);
+            $this->replaceInFile(
+                "use HasApiTokens, HasFactory, Notifiable;",
+                "use HasApiTokens, HasFactory, Notifiable, HasFilamentShield;",
+                $directory.'/app/Models/User.php'
+            );
         }
 
-        $this->commitChanges('Install Filament Breezy', $directory, $input, $output);
+        $this->commitChanges('Install Filament Shield', $directory, $input, $output);
+    }
+
+    /**
+     * Install Filament Sentry plugin into the application.
+     *
+     * @param  string  $directory
+     * @param  \Symfony\Component\Console\Input\InputInterface  $input
+     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @return void
+     */
+    protected function installSentryPlugin(string $directory, InputInterface $input, OutputInterface $output)
+    {
+        chdir($directory);
+
+        $commands = array_filter([
+            $this->findComposer().' require awcodes/filament-sentry --quiet',
+            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-sentry-config --quiet',
+            PHP_BINARY.' artisan vendor:publish --ansi --tag=filament-shield-config --quiet',
+        ]);
+
+        if ($this->runCommands($commands, $input, $output)->isSuccessful()) {
+            $this->replaceInFile(
+                "use Laravel\Sanctum\HasApiTokens;",
+                "use Laravel\Sanctum\HasApiTokens;\nuse BezhanSalleh\FilamentShield\Traits\HasFilamentShield;",
+                $directory.'/app/Models/User.php'
+            );
+
+            $this->replaceInFile(
+                "use HasApiTokens, HasFactory, Notifiable;",
+                "use HasApiTokens, HasFactory, Notifiable, HasFilamentShield;",
+                $directory.'/app/Models/User.php'
+            );
+        }
+
+        $this->commitChanges('Install Filament Shield', $directory, $input, $output);
     }
 
     /**
