@@ -19,7 +19,7 @@ filament new `directory name`
 * --force (Forces install even if the directory already exists)
 * --breezy (Installs Filament Breezy Plugin, for Authentication)
 * --shield (Installs Filament Shield Plugin, for Authorization)
-* --sentry (Installs Filament Sentry Plugin (combines Breezy, Shield and User Management Resources)
+* --sentry (Installs Filament Sentry Plugin, combines Breezy, Shield and User Management Resources)
 
 ## License
 
