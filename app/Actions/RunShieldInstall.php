@@ -38,7 +38,7 @@ class RunShieldInstall
         $cwd = getcwd();
         chdir(config('installer.store.project_path'));
 
-        $process = Process::fromShellCommandline('php artisan shield:install --fresh');
+        $process = Process::fromShellCommandline('php artisan shield:install --fresh --minimal');
 
         if ('\\' !== DIRECTORY_SEPARATOR && file_exists('/dev/tty') && is_readable('/dev/tty')) {
             try {
