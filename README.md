@@ -1,5 +1,3 @@
-[![Run tests](https://github.com/awcodes/filament-installer/workflows/Run%20tests/badge.svg?branch=main)](https://github.com/awcodes/filament-installer/actions?query=workflow%3A%22Run+Tests%22)
-
 **Quickly spin up a new Filament powered application.**
 
 Filament Installer is a command-line tool that replaces the Laravel installer and wraps up the most common tasks you might take when creating a Filament app: opening it in your editor and your browser, initialize a git repository, tweak your `.env` and `.env.example`, and more.
