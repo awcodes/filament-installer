@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="103" assertions="246" errors="7" warnings="0" failures="4" skipped="0" time="1.271300">
+    <testsuite name="VendorName Test Suite" tests="102" assertions="245" errors="7" warnings="0" failures="4" skipped="0" time="1.270809">
+      <testsuite name="Tests\Feature\MigrateDatabaseTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/MigrateDatabaseTest.php" tests="3" assertions="9" errors="0" warnings="0" failures="0" skipped="0" time="0.112548">
+        <testcase name="it_migrates_the_database" class="Tests\Feature\MigrateDatabaseTest" classname="Tests.Feature.MigrateDatabaseTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/MigrateDatabaseTest.php" line="22" assertions="3" time="0.085776"/>
+        <testcase name="it_skips_migrations" class="Tests\Feature\MigrateDatabaseTest" classname="Tests.Feature.MigrateDatabaseTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/MigrateDatabaseTest.php" line="84" assertions="3" time="0.013359"/>
+        <testcase name="failed_migrations_do_not_halt_execution" class="Tests\Feature\MigrateDatabaseTest" classname="Tests.Feature.MigrateDatabaseTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/MigrateDatabaseTest.php" line="53" assertions="3" time="0.013413"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\InitializeGitHubRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitHubRepositoryTest.php" tests="2" assertions="50" errors="0" warnings="0" failures="0" skipped="0" time="0.032766">
+        <testcase name="it_manages_new_repository_initialization" class="Tests\Feature\InitializeGitHubRepositoryTest" classname="Tests.Feature.InitializeGitHubRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitHubRepositoryTest.php" line="127" assertions="49" time="0.020518"/>
+        <testcase name="it_warns_the_user_if_repository_creation_fails" class="Tests\Feature\InitializeGitHubRepositoryTest" classname="Tests.Feature.InitializeGitHubRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitHubRepositoryTest.php" line="158" assertions="1" time="0.012249"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\CustomizeDotEnvTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CustomizeDotEnvTest.php" tests="5" assertions="5" errors="1" warnings="0" failures="0" skipped="0" time="0.060457">
+        <testcase name="it_saves_the_customized_dot_env_files" class="Tests\Feature\CustomizeDotEnvTest" classname="Tests.Feature.CustomizeDotEnvTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CustomizeDotEnvTest.php" line="12" assertions="1" time="0.012192">
+          <error type="Mockery\Exception\NoMatchingExpectationException">Tests\Feature\CustomizeDotEnvTest::it_saves_the_customized_dot_env_files
+Mockery\Exception\NoMatchingExpectationException: No matching handler found for Mockery_3_Illuminate_Filesystem_Filesystem::put('/some/project/path/.env.example', 'APP_NAME="My Project"
+APP_URL=http://my-project.example.com
+
+DB_DATABASE=my_project
+DB_USERNAME=username
+DB_PASSWORD=password
+'). Either the method was unexpected or its arguments matched no expected argument list for this method
+
+
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/mockery/mockery/library/Mockery/ExpectationDirector.php:92
+/Users/adam.weston/Dev/filament-installer-zero/vendor/illuminate/support/Facades/Facade.php:338
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/CustomizeDotEnv.php:27
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CustomizeDotEnvTest.php:34
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</error>
+        </testcase>
+        <testcase name="line_breaks_remain" class="Tests\Feature\CustomizeDotEnvTest" classname="Tests.Feature.CustomizeDotEnvTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CustomizeDotEnvTest.php" line="69" assertions="1" time="0.012865"/>
+        <testcase name="lines_with_no_equals_are_unchanged" class="Tests\Feature\CustomizeDotEnvTest" classname="Tests.Feature.CustomizeDotEnvTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CustomizeDotEnvTest.php" line="60" assertions="1" time="0.010779"/>
+        <testcase name="un_targeted_lines_are_unchanged" class="Tests\Feature\CustomizeDotEnvTest" classname="Tests.Feature.CustomizeDotEnvTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CustomizeDotEnvTest.php" line="49" assertions="1" time="0.013202"/>
+        <testcase name="it_replaces_static_strings" class="Tests\Feature\CustomizeDotEnvTest" classname="Tests.Feature.CustomizeDotEnvTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CustomizeDotEnvTest.php" line="38" assertions="1" time="0.011420"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\GetTimezoneTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/GetTimezoneTest.php" tests="2" assertions="2" errors="0" warnings="0" failures="0" skipped="0" time="0.029210">
+        <testcase name="it_uses_the_timezone_configured_in_php_ini" class="Tests\Unit\GetTimezoneTest" classname="Tests.Unit.GetTimezoneTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/GetTimezoneTest.php" line="12" assertions="1" time="0.017568"/>
+        <testcase name="it_uses_the_timezone_of_the_host_operating_system" class="Tests\Unit\GetTimezoneTest" classname="Tests.Unit.GetTimezoneTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/GetTimezoneTest.php" line="25" assertions="1" time="0.011642"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\CreateDatabaseTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CreateDatabaseTest.php" tests="2" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.019613">
+        <testcase name="it_skips_database_creation" class="Tests\Feature\CreateDatabaseTest" classname="Tests.Feature.CreateDatabaseTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CreateDatabaseTest.php" line="49" assertions="2" time="0.010272"/>
+        <testcase name="it_creates_a_mysql_database" class="Tests\Feature\CreateDatabaseTest" classname="Tests.Feature.CreateDatabaseTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/CreateDatabaseTest.php" line="21" assertions="2" time="0.009341"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\PushToGitHubTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/PushToGitHubTest.php" tests="4" assertions="7" errors="0" warnings="0" failures="0" skipped="0" time="0.045672">
+        <testcase name="it_skips_pushing_to_github" class="Tests\Feature\PushToGitHubTest" classname="Tests.Feature.PushToGitHubTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/PushToGitHubTest.php" line="103" assertions="2" time="0.009761"/>
+        <testcase name="it_logs_a_warning_if_pushing_to_git_hub_fails" class="Tests\Feature\PushToGitHubTest" classname="Tests.Feature.PushToGitHubTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/PushToGitHubTest.php" line="67" assertions="2" time="0.008945"/>
+        <testcase name="it_pushes_to_github" class="Tests\Feature\PushToGitHubTest" classname="Tests.Feature.PushToGitHubTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/PushToGitHubTest.php" line="19" assertions="2" time="0.008814"/>
+        <testcase name="it_logs_a_warning_if_branch_name_cannot_be_determined" class="Tests\Feature\PushToGitHubTest" classname="Tests.Feature.PushToGitHubTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/PushToGitHubTest.php" line="39" assertions="1" time="0.018152"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" tests="7" assertions="18" errors="0" warnings="0" failures="0" skipped="0" time="0.073740">
+        <testcase name="it_throws_an_installer_exception_if_the_project_path_already_exists" class="Tests\Feature\VerifyPathAvailableTest" classname="Tests.Feature.VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" line="48" assertions="3" time="0.013742"/>
+        <testcase name="it_throws_an_exception_if_project_path_is_empty" class="Tests\Feature\VerifyPathAvailableTest" classname="Tests.Feature.VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" line="137" assertions="2" time="0.011949"/>
+        <testcase name="it_ignores_a_pre_existing_directory_if_the_force_option_is_specified" class="Tests\Feature\VerifyPathAvailableTest" classname="Tests.Feature.VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" line="73" assertions="3" time="0.009761"/>
+        <testcase name="it_checks_if_the_required_directories_are_available" class="Tests\Feature\VerifyPathAvailableTest" classname="Tests.Feature.VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" line="14" assertions="2" time="0.008779"/>
+        <testcase name="it_throws_an_installer_exception_if_it_fails_to_delete_the_pre_existing_directory" class="Tests\Feature\VerifyPathAvailableTest" classname="Tests.Feature.VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" line="104" assertions="4" time="0.009332"/>
+        <testcase name="it_throws_an_exception_if_project_path_is_null" class="Tests\Feature\VerifyPathAvailableTest" classname="Tests.Feature.VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" line="155" assertions="2" time="0.010982"/>
+        <testcase name="it_throws_an_installer_exception_if_the_root_path_is_not_available" class="Tests\Feature\VerifyPathAvailableTest" classname="Tests.Feature.VerifyPathAvailableTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyPathAvailableTest.php" line="33" assertions="2" time="0.009195"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\ShellConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/ShellConfigurationTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.048489">
+        <testcase name="it_returns_null_if_a_non_existent_property_is_requested" class="Tests\Unit\ShellConfigurationTest" classname="Tests.Unit.ShellConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/ShellConfigurationTest.php" line="48" assertions="1" time="0.011056"/>
+        <testcase name="it_returns_null_if_a_shell_environment_variable_is_empty" class="Tests\Unit\ShellConfigurationTest" classname="Tests.Unit.ShellConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/ShellConfigurationTest.php" line="36" assertions="1" time="0.011005"/>
+        <testcase name="it_gets_the_value_of_of_a_shell_environment_variable" class="Tests\Unit\ShellConfigurationTest" classname="Tests.Unit.ShellConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/ShellConfigurationTest.php" line="12" assertions="1" time="0.014077"/>
+        <testcase name="it_returns_null_if_a_shell_environment_variable_is_missing" class="Tests\Unit\ShellConfigurationTest" classname="Tests.Unit.ShellConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/ShellConfigurationTest.php" line="24" assertions="1" time="0.012351"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\InitializeGitRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitRepositoryTest.php" tests="5" assertions="15" errors="0" warnings="0" failures="0" skipped="0" time="0.053226">
+        <testcase name="it_initializes_git" class="Tests\Feature\InitializeGitRepositoryTest" classname="Tests.Feature.InitializeGitRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitRepositoryTest.php" line="13" assertions="3" time="0.012173"/>
+        <testcase name="it_removes_the_quiet_flag_when_show_output_is_enabled" class="Tests\Feature\InitializeGitRepositoryTest" classname="Tests.Feature.InitializeGitRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitRepositoryTest.php" line="93" assertions="3" time="0.009543"/>
+        <testcase name="it_throws_an_exception_if_git_commit_fails" class="Tests\Feature\InitializeGitRepositoryTest" classname="Tests.Feature.InitializeGitRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitRepositoryTest.php" line="67" assertions="4" time="0.010731"/>
+        <testcase name="it_throws_an_exception_if_git_add_fails" class="Tests\Feature\InitializeGitRepositoryTest" classname="Tests.Feature.InitializeGitRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitRepositoryTest.php" line="49" assertions="3" time="0.010583"/>
+        <testcase name="it_throws_an_exception_if_git_init_fails" class="Tests\Feature\InitializeGitRepositoryTest" classname="Tests.Feature.InitializeGitRepositoryTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InitializeGitRepositoryTest.php" line="36" assertions="2" time="0.010195"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\ValetSecureTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValetSecureTest.php" tests="2" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.020727">
+        <testcase name="it_runs_valet_secure" class="Tests\Feature\ValetSecureTest" classname="Tests.Feature.ValetSecureTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValetSecureTest.php" line="13" assertions="1" time="0.009847"/>
+        <testcase name="it_throws_an_exception_if_valet_secure_fails" class="Tests\Feature\ValetSecureTest" classname="Tests.Feature.ValetSecureTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValetSecureTest.php" line="26" assertions="2" time="0.010880"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\SignatureBuilderTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/SignatureBuilderTest.php" tests="5" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.057482">
+        <testcase name="it_does_not_set_expectation_for_values_if_option_does_not_expect_parameters" class="Tests\Feature\SignatureBuilderTest" classname="Tests.Feature.SignatureBuilderTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/SignatureBuilderTest.php" line="49" assertions="1" time="0.012921"/>
+        <testcase name="it_defines_description" class="Tests\Feature\SignatureBuilderTest" classname="Tests.Feature.SignatureBuilderTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/SignatureBuilderTest.php" line="61" assertions="1" time="0.013269"/>
+        <testcase name="it_offers_short_and_long_codes" class="Tests\Feature\SignatureBuilderTest" classname="Tests.Feature.SignatureBuilderTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/SignatureBuilderTest.php" line="11" assertions="1" time="0.011364"/>
+        <testcase name="it_sets_expectation_for_values_if_option_expects_parameters" class="Tests\Feature\SignatureBuilderTest" classname="Tests.Feature.SignatureBuilderTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/SignatureBuilderTest.php" line="36" assertions="1" time="0.010683"/>
+        <testcase name="it_functions_given_only_long_code" class="Tests\Feature\SignatureBuilderTest" classname="Tests.Feature.SignatureBuilderTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/SignatureBuilderTest.php" line="24" assertions="1" time="0.009245"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\ValidateGitHubConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValidateGitHubConfigurationTest.php" tests="5" assertions="6" errors="0" warnings="0" failures="0" skipped="0" time="0.058665">
+        <testcase name="configuration_is_valid_if_hub_is_installed" class="Tests\Feature\ValidateGitHubConfigurationTest" classname="Tests.Feature.ValidateGitHubConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValidateGitHubConfigurationTest.php" line="56" assertions="1" time="0.010686"/>
+        <testcase name="it_logs_a_warning_if_gh_is_not_authenticated_with_github" class="Tests\Feature\ValidateGitHubConfigurationTest" classname="Tests.Feature.ValidateGitHubConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValidateGitHubConfigurationTest.php" line="92" assertions="1" time="0.011536"/>
+        <testcase name="it_logs_a_warning_if_github_tooling_is_missing" class="Tests\Feature\ValidateGitHubConfigurationTest" classname="Tests.Feature.ValidateGitHubConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValidateGitHubConfigurationTest.php" line="37" assertions="1" time="0.010782"/>
+        <testcase name="it_skips_gh_command_line_tool_validation" class="Tests\Feature\ValidateGitHubConfigurationTest" classname="Tests.Feature.ValidateGitHubConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValidateGitHubConfigurationTest.php" line="22" assertions="2" time="0.011059"/>
+        <testcase name="configuration_is_valid_if_gh_is_installed_and_authenticated" class="Tests\Feature\ValidateGitHubConfigurationTest" classname="Tests.Feature.ValidateGitHubConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValidateGitHubConfigurationTest.php" line="72" assertions="1" time="0.014601"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\GenerateAppKeyTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/GenerateAppKeyTest.php" tests="2" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.022973">
+        <testcase name="it_throws_an_exception_if_new_app_key_generation_fails" class="Tests\Feature\GenerateAppKeyTest" classname="Tests.Feature.GenerateAppKeyTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/GenerateAppKeyTest.php" line="24" assertions="2" time="0.013393"/>
+        <testcase name="it_generates_a_new_app_key" class="Tests\Feature\GenerateAppKeyTest" classname="Tests.Feature.GenerateAppKeyTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/GenerateAppKeyTest.php" line="13" assertions="1" time="0.009580"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\OpenInEditorTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInEditorTest.php" tests="2" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.022196">
+        <testcase name="it_opens_the_project_folder_in_the_specified_editor" class="Tests\Feature\OpenInEditorTest" classname="Tests.Feature.OpenInEditorTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInEditorTest.php" line="13" assertions="2" time="0.009921"/>
+        <testcase name="it_throws_an_exception_if_it_fails_to_open_the_editor" class="Tests\Feature\OpenInEditorTest" classname="Tests.Feature.OpenInEditorTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInEditorTest.php" line="30" assertions="3" time="0.012276"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\UpgradeSavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/UpgradeSavedConfigurationTest.php" tests="1" assertions="1" errors="0" warnings="0" failures="1" skipped="0" time="0.016036">
+        <testcase name="it_upgrades_saved_configuration" class="Tests\Feature\UpgradeSavedConfigurationTest" classname="Tests.Feature.UpgradeSavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/UpgradeSavedConfigurationTest.php" line="41" assertions="1" time="0.016036">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\UpgradeSavedConfigurationTest::it_upgrades_saved_configuration
+Failed asserting that two strings are equal.
+--- Expected
++++ Actual
+@@ @@
+ # Filament Installer has introduced new configuration options. They have been added here\n
+ # with sensible defaults; however, you should review them.\n
+ #\n
+-# The THING parameter enables Filament Installer to do a thing.\n
++# The THING parameter enables Filament Installeer to do a thing.\n
+ # Valid options are foo, bar and flibble (default if not specified).\n
+ #THING=flibble\n
+ \n
+-# The ANOTHER_THING parameter enables Filament Installer to do a another thing.\n
++# The ANOTHER_THING parameter enables Filament Installeer to do a another thing.\n
+ # Valid options are true or false (default if not specified).\n
+ ANOTHER_THING=false\n
+ \n
+ '
+
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/UpgradeSavedConfigurationTest.php:76
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="Tests\Feature\VerifyDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php" tests="5" assertions="3" errors="2" warnings="0" failures="3" skipped="0" time="0.063886">
+        <testcase name="it_checks_that_dependencies_are_available" class="Tests\Feature\VerifyDependenciesTest" classname="Tests.Feature.VerifyDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php" line="21" assertions="0" time="0.014147">
+          <error type="Mockery\Exception\BadMethodCallException">Tests\Feature\VerifyDependenciesTest::it_checks_that_dependencies_are_available
+Mockery\Exception\BadMethodCallException: Received Mockery_0_App_ConsoleWriter::sectionSubTitle(), but no expectations were specified
+
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/VerifyDependencies.php:57
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php:27
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</error>
+        </testcase>
+        <testcase name="it_throws_an_installer_exception_if_git_is_missing" class="Tests\Feature\VerifyDependenciesTest" classname="Tests.Feature.VerifyDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php" line="76" assertions="1" time="0.013210">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\VerifyDependenciesTest::it_throws_an_installer_exception_if_git_is_missing
+Failed asserting that exception of type "Mockery\Exception\BadMethodCallException" matches expected exception "App\InstallerException". Message was: "Received Mockery_0_App_ConsoleWriter::sectionSubTitle(), but no expectations were specified" at
+  /Users/adam.weston/Dev/filament-installer-zero/app/Actions/VerifyDependencies.php:57
+  /Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php:86
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63
+  .
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</failure>
+        </testcase>
+        <testcase name="it_marks_optional_dependencies_as_missing" class="Tests\Feature\VerifyDependenciesTest" classname="Tests.Feature.VerifyDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php" line="33" assertions="0" time="0.013443">
+          <error type="Mockery\Exception\BadMethodCallException">Tests\Feature\VerifyDependenciesTest::it_marks_optional_dependencies_as_missing
+Mockery\Exception\BadMethodCallException: Received Mockery_0_App_ConsoleWriter::sectionSubTitle(), but no expectations were specified
+
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/VerifyDependencies.php:57
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php:42
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</error>
+        </testcase>
+        <testcase name="it_throws_an_installer_exception_if_valet_is_missing" class="Tests\Feature\VerifyDependenciesTest" classname="Tests.Feature.VerifyDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php" line="62" assertions="1" time="0.012974">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\VerifyDependenciesTest::it_throws_an_installer_exception_if_valet_is_missing
+Failed asserting that exception of type "Mockery\Exception\BadMethodCallException" matches expected exception "App\InstallerException". Message was: "Received Mockery_0_App_ConsoleWriter::sectionSubTitle(), but no expectations were specified" at
+  /Users/adam.weston/Dev/filament-installer-zero/app/Actions/VerifyDependencies.php:57
+  /Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php:72
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63
+  .
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</failure>
+        </testcase>
+        <testcase name="it_throws_an_installer_exception_if_composer_is_missing" class="Tests\Feature\VerifyDependenciesTest" classname="Tests.Feature.VerifyDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php" line="48" assertions="1" time="0.010112">
+          <failure type="PHPUnit\Framework\ExpectationFailedException">Tests\Feature\VerifyDependenciesTest::it_throws_an_installer_exception_if_composer_is_missing
+Failed asserting that exception of type "Mockery\Exception\BadMethodCallException" matches expected exception "App\InstallerException". Message was: "Received Mockery_0_App_ConsoleWriter::sectionSubTitle(), but no expectations were specified" at
+  /Users/adam.weston/Dev/filament-installer-zero/app/Actions/VerifyDependencies.php:57
+  /Users/adam.weston/Dev/filament-installer-zero/tests/Feature/VerifyDependenciesTest.php:58
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+  /Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63
+  .
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</failure>
+        </testcase>
+      </testsuite>
+      <testsuite name="Tests\Unit\CommandLineConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/CommandLineConfigurationTest.php" tests="4" assertions="4" errors="0" warnings="0" failures="0" skipped="0" time="0.041259">
+        <testcase name="it_returns_null_if_a_non_existent_property_is_requested" class="Tests\Unit\CommandLineConfigurationTest" classname="Tests.Unit.CommandLineConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/CommandLineConfigurationTest.php" line="71" assertions="1" time="0.010166"/>
+        <testcase name="it_returns_null_if_a_command_line_configuration_value_is_empty" class="Tests\Unit\CommandLineConfigurationTest" classname="Tests.Unit.CommandLineConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/CommandLineConfigurationTest.php" line="54" assertions="1" time="0.010298"/>
+        <testcase name="it_gets_a_command_line_configuration_value" class="Tests\Unit\CommandLineConfigurationTest" classname="Tests.Unit.CommandLineConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/CommandLineConfigurationTest.php" line="22" assertions="1" time="0.010310"/>
+        <testcase name="it_returns_null_if_a_command_line_configuration_value_is_missing" class="Tests\Unit\CommandLineConfigurationTest" classname="Tests.Unit.CommandLineConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/CommandLineConfigurationTest.php" line="39" assertions="1" time="0.010485"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\RunAfterScriptTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/RunAfterScriptTest.php" tests="2" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.023342">
+        <testcase name="it_runs_the_after_script_if_one_exists" class="Tests\Feature\RunAfterScriptTest" classname="Tests.Feature.RunAfterScriptTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/RunAfterScriptTest.php" line="14" assertions="1" time="0.010780"/>
+        <testcase name="it_throws_an_exception_if_the_after_script_fails" class="Tests\Feature\RunAfterScriptTest" classname="Tests.Feature.RunAfterScriptTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/RunAfterScriptTest.php" line="35" assertions="2" time="0.012562"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\SavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SavedConfigurationTest.php" tests="6" assertions="13" errors="0" warnings="0" failures="0" skipped="0" time="0.072917">
+        <testcase name="it_returns_null_if_a_saved_configuration_option_has_no_value" class="Tests\Unit\SavedConfigurationTest" classname="Tests.Unit.SavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SavedConfigurationTest.php" line="39" assertions="1" time="0.018390"/>
+        <testcase name="it_gets_a_saved_configuration_value" class="Tests\Unit\SavedConfigurationTest" classname="Tests.Unit.SavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SavedConfigurationTest.php" line="19" assertions="1" time="0.012329"/>
+        <testcase name="it_returns_null_if_a_non_existent_property_is_requested" class="Tests\Unit\SavedConfigurationTest" classname="Tests.Unit.SavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SavedConfigurationTest.php" line="71" assertions="1" time="0.009830"/>
+        <testcase name="it_returns_null_if_a_saved_configuration_option_is_missing" class="Tests\Unit\SavedConfigurationTest" classname="Tests.Unit.SavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SavedConfigurationTest.php" line="29" assertions="1" time="0.010104"/>
+        <testcase name="it_returns_null_if_a_saved_configuration_option_is_empty" class="Tests\Unit\SavedConfigurationTest" classname="Tests.Unit.SavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SavedConfigurationTest.php" line="49" assertions="1" time="0.011368"/>
+        <testcase name="it_casts_strings_to_booleans" class="Tests\Unit\SavedConfigurationTest" classname="Tests.Unit.SavedConfigurationTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SavedConfigurationTest.php" line="78" assertions="8" time="0.010896"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\ValetLinkTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValetLinkTest.php" tests="2" assertions="3" errors="0" warnings="0" failures="0" skipped="0" time="0.025993">
+        <testcase name="it_throws_an_exception_if_valet_link_fails" class="Tests\Feature\ValetLinkTest" classname="Tests.Feature.ValetLinkTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValetLinkTest.php" line="26" assertions="2" time="0.012211"/>
+        <testcase name="it_runs_valet_link" class="Tests\Feature\ValetLinkTest" classname="Tests.Feature.ValetLinkTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/ValetLinkTest.php" line="13" assertions="1" time="0.013782"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\InstallNpmDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallNpmDependenciesTest.php" tests="3" assertions="4" errors="2" warnings="0" failures="0" skipped="0" time="0.035032">
+        <testcase name="it_installs_npm_dependencies" class="Tests\Feature\InstallNpmDependenciesTest" classname="Tests.Feature.InstallNpmDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallNpmDependenciesTest.php" line="13" assertions="1" time="0.015899">
+          <error type="Mockery\Exception\NoMatchingExpectationException">Tests\Feature\InstallNpmDependenciesTest::it_installs_npm_dependencies
+Mockery\Exception\NoMatchingExpectationException: No matching handler found for Mockery_1_App_Shell::execInProject('npm run  build --silent'). Either the method was unexpected or its arguments matched no expected argument list for this method
+
+
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/mockery/mockery/library/Mockery/ExpectationDirector.php:92
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/Concerns/InteractsWithNpm.php:55
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/Concerns/InteractsWithNpm.php:38
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/InstallNpmDependencies.php:28
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallNpmDependenciesTest.php:22
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</error>
+        </testcase>
+        <testcase name="it_throws_an_exception_if_npm_install_fails" class="Tests\Feature\InstallNpmDependenciesTest" classname="Tests.Feature.InstallNpmDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallNpmDependenciesTest.php" line="39" assertions="2" time="0.010041"/>
+        <testcase name="it_installs_npm_dependencies_and_shows_console_output" class="Tests\Feature\InstallNpmDependenciesTest" classname="Tests.Feature.InstallNpmDependenciesTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallNpmDependenciesTest.php" line="26" assertions="1" time="0.009092">
+          <error type="Mockery\Exception\NoMatchingExpectationException">Tests\Feature\InstallNpmDependenciesTest::it_installs_npm_dependencies_and_shows_console_output
+Mockery\Exception\NoMatchingExpectationException: No matching handler found for Mockery_1_App_Shell::execInProject('npm run  build'). Either the method was unexpected or its arguments matched no expected argument list for this method
+
+
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/mockery/mockery/library/Mockery/ExpectationDirector.php:92
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/Concerns/InteractsWithNpm.php:55
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/Concerns/InteractsWithNpm.php:38
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/InstallNpmDependencies.php:28
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallNpmDependenciesTest.php:35
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</error>
+        </testcase>
+      </testsuite>
+      <testsuite name="Tests\Feature\InstallLaravelTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallLaravelTest.php" tests="2" assertions="5" errors="0" warnings="0" failures="0" skipped="0" time="0.020751">
+        <testcase name="it_installs_laravel" class="Tests\Feature\InstallLaravelTest" classname="Tests.Feature.InstallLaravelTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallLaravelTest.php" line="13" assertions="4" time="0.009598"/>
+        <testcase name="it_throws_an_exception_if_laravel_fails_to_install" class="Tests\Feature\InstallLaravelTest" classname="Tests.Feature.InstallLaravelTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/InstallLaravelTest.php" line="39" assertions="1" time="0.011153"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\EditConfigFileTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/EditConfigFileTest.php" tests="6" assertions="30" errors="0" warnings="0" failures="0" skipped="0" time="0.071915">
+        <testcase name="it_creates_a_config_file_then_opens_the_file_for_editing" class="Tests\Feature\EditConfigFileTest" classname="Tests.Feature.EditConfigFileTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/EditConfigFileTest.php" line="53" assertions="6" time="0.010442"/>
+        <testcase name="it_opens_a_config_file_for_editing" class="Tests\Feature\EditConfigFileTest" classname="Tests.Feature.EditConfigFileTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/EditConfigFileTest.php" line="64" assertions="4" time="0.010449"/>
+        <testcase name="failing_to_create_the_configuration_file_throws_an_exception" class="Tests\Feature\EditConfigFileTest" classname="Tests.Feature.EditConfigFileTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/EditConfigFileTest.php" line="97" assertions="5" time="0.011457"/>
+        <testcase name="it_creates_the_config_directory_and_file_then_opens_the_file_for_editing" class="Tests\Feature\EditConfigFileTest" classname="Tests.Feature.EditConfigFileTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/EditConfigFileTest.php" line="37" assertions="7" time="0.012461"/>
+        <testcase name="it_throws_an_exception_if_the_configured_editor_fails_to_open" class="Tests\Feature\EditConfigFileTest" classname="Tests.Feature.EditConfigFileTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/EditConfigFileTest.php" line="74" assertions="5" time="0.013351"/>
+        <testcase name="failing_to_create_the_configuration_directory_throws_an_exception" class="Tests\Feature\EditConfigFileTest" classname="Tests.Feature.EditConfigFileTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/EditConfigFileTest.php" line="86" assertions="3" time="0.013755"/>
+      </testsuite>
+      <testsuite name="Tests\Unit\SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" tests="16" assertions="35" errors="0" warnings="0" failures="0" skipped="0" time="0.177101">
+        <testcase name="it_sets_the_valet_secure_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="601" assertions="3" time="0.013806"/>
+        <testcase name="it_replaces_tilda_in_root_path" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="224" assertions="2" time="0.010888"/>
+        <testcase name="it_sets_the_project_url" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="285" assertions="2" time="0.009613"/>
+        <testcase name="it_sets_the_create_database_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="374" assertions="3" time="0.009475"/>
+        <testcase name="it_prioritises_saved_configuration_over_shell_environment_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="143" assertions="1" time="0.009529"/>
+        <testcase name="it_replaces_hyphens_with_underscores_in_database_names" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="260" assertions="1" time="0.010647"/>
+        <testcase name="it_prioritises_shell_environment_over_default_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="170" assertions="1" time="0.012586"/>
+        <testcase name="it_sets_the_valet_link_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="544" assertions="3" time="0.013813"/>
+        <testcase name="it_sets_the_migrate_database_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="432" assertions="5" time="0.010221"/>
+        <testcase name="it_sets_the_project_name" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="330" assertions="1" time="0.009866"/>
+        <testcase name="it_sets_the_top_level_domain" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="25" assertions="3" time="0.009435"/>
+        <testcase name="it_throws_an_InstallerException_if_valet_config_is_missing" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="88" assertions="3" time="0.009765"/>
+        <testcase name="it_sets_the_project_path" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="349" assertions="1" time="0.009390"/>
+        <testcase name="it_prioritises_command_line_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="116" assertions="1" time="0.009384"/>
+        <testcase name="it_sets_the_top_level_domain_using_legacy_valet_config" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="53" assertions="4" time="0.010332"/>
+        <testcase name="it_uses_a_default_configuration" class="Tests\Unit\SetConfigTest" classname="Tests.Unit.SetConfigTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Unit/SetConfigTest.php" line="197" assertions="1" time="0.018351"/>
+      </testsuite>
+      <testsuite name="Tests\Feature\OpenInBrowserTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php" tests="5" assertions="8" errors="2" warnings="0" failures="0" skipped="0" time="0.064811">
+        <testcase name="it_uses_the_open_command_on_mac_when_a_browser_is_specified" class="Tests\Feature\OpenInBrowserTest" classname="Tests.Feature.OpenInBrowserTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php" line="21" assertions="2" time="0.018312">
+          <error type="Mockery\Exception\NoMatchingExpectationException">Tests\Feature\OpenInBrowserTest::it_uses_the_open_command_on_mac_when_a_browser_is_specified
+Mockery\Exception\NoMatchingExpectationException: No matching handler found for Mockery_1_App_Shell::execInProject('open -a "/Applications/my/browser.app" "http://my-project.test/admin/login"'). Either the method was unexpected or its arguments matched no expected argument list for this method
+
+
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/mockery/mockery/library/Mockery/ExpectationDirector.php:92
+/Users/adam.weston/Dev/filament-installer-zero/app/Actions/OpenInBrowser.php:36
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php:34
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</error>
+        </testcase>
+        <testcase name="it_uses_valet_open_when_not_running_on_mac" class="Tests\Feature\OpenInBrowserTest" classname="Tests.Feature.OpenInBrowserTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php" line="54" assertions="0" time="0.010808">
+          <error type="Illuminate\Contracts\Container\BindingResolutionException">Tests\Feature\OpenInBrowserTest::it_uses_valet_open_when_not_running_on_mac
+Illuminate\Contracts\Container\BindingResolutionException: Target class [config] does not exist.
+
+/Users/adam.weston/Dev/filament-installer-zero/vendor/illuminate/container/Container.php:877
+/Users/adam.weston/Dev/filament-installer-zero/vendor/illuminate/container/Container.php:756
+/Users/adam.weston/Dev/filament-installer-zero/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php:863
+/Users/adam.weston/Dev/filament-installer-zero/vendor/illuminate/container/Container.php:692
+/Users/adam.weston/Dev/filament-installer-zero/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php:848
+/Users/adam.weston/Dev/filament-installer-zero/vendor/illuminate/container/Container.php:1419
+/Users/adam.weston/Dev/filament-installer-zero/vendor/laravel-zero/framework/src/Bootstrap/LoadConfiguration.php:38
+/Users/adam.weston/Dev/filament-installer-zero/vendor/illuminate/console/Application.php:161
+/Users/adam.weston/Dev/filament-installer-zero/vendor/illuminate/console/Application.php:82
+/Users/adam.weston/Dev/filament-installer-zero/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php:330
+/Users/adam.weston/Dev/filament-installer-zero/vendor/laravel-zero/framework/src/Kernel.php:138
+/Users/adam.weston/Dev/filament-installer-zero/tests/CreatesApplication.php:18
+/Users/adam.weston/Dev/filament-installer-zero/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Testing/TestCase.php:110
+/Users/adam.weston/Dev/filament-installer-zero/vendor/laravel-zero/framework/src/Testing/TestCase.php:29
+/Users/adam.weston/Dev/filament-installer-zero/tests/TestCase.php:18
+/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php:16
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Console/Command.php:117
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:62
+/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/bin/pest:63</error>
+        </testcase>
+        <testcase name="it_ignores_the_specified_browser_when_not_running_on_mac" class="Tests\Feature\OpenInBrowserTest" classname="Tests.Feature.OpenInBrowserTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php" line="68" assertions="2" time="0.012304"/>
+        <testcase name="it_uses_valet_open_on_mac_when_no_browser_is_specified" class="Tests\Feature\OpenInBrowserTest" classname="Tests.Feature.OpenInBrowserTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php" line="38" assertions="3" time="0.010682"/>
+        <testcase name="it_skips_opening_the_site" class="Tests\Feature\OpenInBrowserTest" classname="Tests.Feature.OpenInBrowserTest" file="/Users/adam.weston/Dev/filament-installer-zero/tests/Feature/OpenInBrowserTest.php" line="85" assertions="1" time="0.012706"/>
+      </testsuite>
+    </testsuite>
+    <testsuite name="P\Tests\ExampleTest" file="/Users/adam.weston/Dev/filament-installer-zero/vendor/pestphp/pest/src/Factories/TestCaseFactory.php(223) : eval()'d code" tests="1" assertions="1" errors="0" warnings="0" failures="0" skipped="0" time="0.000491">
+      <testcase name="example" assertions="1" time="0.000491"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
