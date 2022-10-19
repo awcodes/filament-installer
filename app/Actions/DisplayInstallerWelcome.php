@@ -7,17 +7,12 @@ use function Termwind\{render};
 class DisplayInstallerWelcome
 {
     protected $installerLogo = '
-    ______  __                           __ :version:
+    ______  __                           __
    / ____(_) /___   ___ __   ___  ____  / /_
   / /_  /\/ / __ `/ __ `__ \/ _ \/ __ \/ __/
  / __/ /\/ / /_/ / / / / / /  __/ / / / /_
 /_/   /\/_/\__,_/_/ /_/ /_/\___/_/ /_/\__/';
-
-    public function __construct()
-    {
-        $this->installerLogo = str_replace(':version:', config('app.version'), $this->installerLogo);
-    }
-
+    
     public function __invoke()
     {
         foreach (explode("\n", $this->installerLogo) as $line) {
