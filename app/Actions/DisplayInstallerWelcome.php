@@ -12,7 +12,7 @@ class DisplayInstallerWelcome
   / /_  /\/ / __ `/ __ `__ \/ _ \/ __ \/ __/
  / __/ /\/ / /_/ / / / / / /  __/ / / / /_
 /_/   /\/_/\__,_/_/ /_/ /_/\___/_/ /_/\__/';
-    
+
     public function __invoke()
     {
         foreach (explode("\n", $this->installerLogo) as $line) {
